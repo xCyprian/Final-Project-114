@@ -1,0 +1,211 @@
+{
+  "info": {
+    "name": "Fitness Tracker API",
+    "description": "Complete API collection for the Fitness Tracker backend. Covers all CRUD endpoints for Users, Workouts, and Exercises, plus relationship endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/users", "host": ["{{base_url}}"], "path": ["api", "users"] },
+            "description": "Returns a list of all registered users."
+          }
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/users/1", "host": ["{{base_url}}"], "path": ["api", "users", "1"] },
+            "description": "Returns a single user by ID, including their workouts. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"age\": 25,\n  \"fitnessGoal\": \"muscle_gain\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/users", "host": ["{{base_url}}"], "path": ["api", "users"] },
+            "description": "Creates a new user. Returns 201 on success, 400 if name or email is missing."
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Updated\",\n  \"fitnessGoal\": \"endurance\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/users/1", "host": ["{{base_url}}"], "path": ["api", "users", "1"] },
+            "description": "Updates an existing user by ID. Returns 404 if the user does not exist."
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/users/1", "host": ["{{base_url}}"], "path": ["api", "users", "1"] },
+            "description": "Deletes a user by ID. Returns 404 if not found."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exercises",
+      "item": [
+        {
+          "name": "Get All Exercises",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/exercises", "host": ["{{base_url}}"], "path": ["api", "exercises"] },
+            "description": "Returns a list of all exercises in the database."
+          }
+        },
+        {
+          "name": "Get Exercise By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/exercises/1", "host": ["{{base_url}}"], "path": ["api", "exercises", "1"] },
+            "description": "Returns a single exercise by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create Exercise",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bench Press\",\n  \"muscleGroup\": \"chest\",\n  \"description\": \"A compound pushing exercise using a barbell.\",\n  \"difficulty\": \"intermediate\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/exercises", "host": ["{{base_url}}"], "path": ["api", "exercises"] },
+            "description": "Creates a new exercise. Returns 201 on success, 400 if name or muscleGroup is missing."
+          }
+        },
+        {
+          "name": "Update Exercise",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"difficulty\": \"advanced\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/exercises/1", "host": ["{{base_url}}"], "path": ["api", "exercises", "1"] },
+            "description": "Updates an existing exercise by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Exercise",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/exercises/1", "host": ["{{base_url}}"], "path": ["api", "exercises", "1"] },
+            "description": "Deletes an exercise by ID. Returns 404 if not found."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workouts",
+      "item": [
+        {
+          "name": "Get All Workouts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/workouts", "host": ["{{base_url}}"], "path": ["api", "workouts"] },
+            "description": "Returns all workouts including the owner (User) info."
+          }
+        },
+        {
+          "name": "Get Workout By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/workouts/1", "host": ["{{base_url}}"], "path": ["api", "workouts", "1"] },
+            "description": "Returns a single workout with full user info and all associated exercises (with sets/reps/weight). Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Create Workout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Morning Push Day\",\n  \"notes\": \"Felt strong today.\",\n  \"durationMinutes\": 60,\n  \"workoutDate\": \"2024-06-01\",\n  \"userId\": 1\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/workouts", "host": ["{{base_url}}"], "path": ["api", "workouts"] },
+            "description": "Creates a new workout for a user. Returns 201 on success, 400 if required fields are missing."
+          }
+        },
+        {
+          "name": "Update Workout",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Evening Push Day\",\n  \"durationMinutes\": 75\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/workouts/1", "host": ["{{base_url}}"], "path": ["api", "workouts", "1"] },
+            "description": "Updates an existing workout by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Delete Workout",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/workouts/1", "host": ["{{base_url}}"], "path": ["api", "workouts", "1"] },
+            "description": "Deletes a workout by ID. Returns 404 if not found."
+          }
+        },
+        {
+          "name": "Add Exercise to Workout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exerciseId\": 1,\n  \"sets\": 4,\n  \"reps\": 10,\n  \"weightKg\": 80,\n  \"notes\": \"Keep elbows tucked.\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/workouts/1/exercises", "host": ["{{base_url}}"], "path": ["api", "workouts", "1", "exercises"] },
+            "description": "Adds an exercise to a workout via the junction table. Accepts optional sets, reps, weightKg, and notes."
+          }
+        },
+        {
+          "name": "Remove Exercise from Workout",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{base_url}}/api/workouts/1/exercises/1", "host": ["{{base_url}}"], "path": ["api", "workouts", "1", "exercises", "1"] },
+            "description": "Removes an exercise from a workout. Returns 404 if either the workout or exercise does not exist."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
