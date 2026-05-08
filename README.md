@@ -1,6 +1,6 @@
 # Fitness Tracker API
 
-A REST-fi; API for logging and managing personal workout data. Built with Node.js, Express, Sequelize, and MySQL.
+A REST-ful API for logging and managing personal workout data. Built with Node.js, Express, Sequelize, and MySQL.
 
 ---
 
