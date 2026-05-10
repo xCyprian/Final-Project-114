@@ -35,7 +35,7 @@ The data model mirrors how real training works: a user has a fitness goal, logs 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fitness-tracker-api.git
+git clone https://github.com/xCyprian/fitness-tracker-api.git
 cd fitness-tracker-api
 npm install
 ```
